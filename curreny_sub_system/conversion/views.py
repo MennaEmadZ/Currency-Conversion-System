@@ -24,6 +24,8 @@ def get_latest_exchange_rate(source_currency, target_currency):
 
 
 class CurrencyConversionAPIView(APIView):
+
+
     def post(self, request, format=None):
         serializer = CurrencyConversionSerializer(data=request.data)
         if serializer.is_valid():
@@ -44,6 +46,7 @@ class CurrencyConversionAPIView(APIView):
                 conversion_rate = conversion_rate,
                 created_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             )
+      
             serialized_response = CurrencyConversionSerializer(conversion)
 
             return Response(serialized_response.data, status=status.HTTP_201_CREATED)
@@ -60,5 +63,5 @@ class HistoryAPIView(APIView):
             serialized_response = CurrencyConversionSerializer(conversion, many=True)
 
             return Response(serialized_response.data, status=status.HTTP_201_CREATED)
-            
+
         return Response({'error': 'User not authenticated.'}, status=status.HTTP_401_UNAUTHORIZED)

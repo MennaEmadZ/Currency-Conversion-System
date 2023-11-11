@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 import environ
 
 env = environ.Env()
@@ -42,8 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'conversion',
-    'authentication',
     'rest_framework',
+    'celery',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  
+
+
+CELERY_BEAT_SCHEDULE = {
+    'update-conversion-status': {
+        'task': 'conversion.tasks.schedule_update_conversion_status',
+        'schedule': timedelta(hours=48),  # Define the schedule to run every 48 hours
+    },
+}

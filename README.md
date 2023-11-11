@@ -63,7 +63,7 @@ python manage.py test
 ### Authentication API
 To authenticate users:
 ```bash
-curl --location --request GET 'http://localhost:8000/auth/token/' \
+curl --location 'http://localhost:8000/auth/token/' \
 --header 'Content-Type: application/json' \
 --data '{
     "username": "mennae",
@@ -74,7 +74,7 @@ curl --location --request GET 'http://localhost:8000/auth/token/' \
 ### Currency Conversion API
 To perform currency conversion (replace `{access_token}` with the actual token):
 ```bash
-curl --location --request POST 'http://localhost:8000/currency/conversion/' \
+curl --location 'http://localhost:8000/currency/conversion/' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {access_token}' \
 --data '{
@@ -87,7 +87,7 @@ curl --location --request POST 'http://localhost:8000/currency/conversion/' \
 ### History Get API
 To retrieve the conversion history:
 ```bash
-curl --location --request GET 'http://localhost:8000/currency/history/' \
+curl --location 'http://localhost:8000/currency/history/' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {access_token}' \
 --data ''

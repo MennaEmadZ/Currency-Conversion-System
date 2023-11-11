@@ -1,7 +1,14 @@
 from rest_framework import serializers
-from .models import Conversion
+from .models import CurrencyConversion, ConversionRate
 
-class ConversionSerializer(serializers.ModelSerializer):
+class ConversionRateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Conversion
-        fields = ['from_currency', "to_currency", "amount"]
+        model = ConversionRate
+        fields = '__all__'
+
+class CurrencyConversionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CurrencyConversion
+        exclude = ['user']
+
+

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'conversion',
     'authentication',
-    'history',
     'rest_framework',
 ]
 
@@ -79,13 +78,16 @@ WSGI_APPLICATION = 'curreny_sub_system.wsgi.application'
 
 REST_FRAMEWORK = {
        'DEFAULT_AUTHENTICATION_CLASSES': (
-           'rest_framework.authentication.TokenAuthentication',
-       ),
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     #    'DEFAULT_PERMISSION_CLASSES': (
     #        'rest_framework.permissions.IsAuthenticated',
     #    ),
    }
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Use Django's default authentication backend
+)
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 

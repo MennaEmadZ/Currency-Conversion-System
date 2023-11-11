@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'conversion',
     'rest_framework',
+    'rest_framework.authtoken',
     'celery',
     'django_celery_beat',
 ]
